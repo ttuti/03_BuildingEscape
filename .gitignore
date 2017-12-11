@@ -1,9 +1,16 @@
 #Unreal Generated Files
-**/Build
-**/Binaries
-**/DerivedDataCache
-**/Intermediate
-**/Saved
+*/Build
+*/Binaries
+*/DerivedDataCache
+*/Intermediate
+*/Saved
 *_BuiltData.uasset
+*.uasset
+*.umap
+
+
+#Visual studio generated files
+##########################################
 *.VC.db
-BuildingEscape/Content/StarterContent/
+*.suo
+*.sln
