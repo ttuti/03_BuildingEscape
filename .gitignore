@@ -5,12 +5,14 @@
 */Intermediate
 */Saved
 *_BuiltData.uasset
-*.uasset
-*.umap
+
+*/Content/StarterContent/Textures
+*/Content/StarterContent/HDRI
+*/.vs
 
 
 #Visual studio generated files
 ##########################################
-*.VC.db
+*.VC.db.*
 *.suo
 *.sln

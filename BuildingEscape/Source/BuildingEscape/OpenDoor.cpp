@@ -29,7 +29,7 @@ void UOpenDoor::OpenDoor(){
 }
 
 void UOpenDoor::CloseDoor(){
-	Owner->SetActorRotation(FRotator(0.f, 0.f, 0.f)); 
+	Owner->SetActorRotation(FRotator(0.f, 90.f, 0.f)); 
 }
 
 
@@ -42,11 +42,11 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	if(PressurePlate->IsOverlappingActor(ActorThatOpens)) {
 		OpenDoor();
 		LastDoorOpenTime = GetWorld()->GetRealTimeSeconds();
-	}	
-	
-	//Check if its time to close the door
+	}
 	if (GetWorld()->GetRealTimeSeconds() - LastDoorOpenTime > DoorCloseDelay) {
 		CloseDoor();
 	}
+	
+	
 }
 
