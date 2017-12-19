@@ -4,7 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Components/InputComponent.h"
+#include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "Grabber.generated.h"
+
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -25,6 +28,15 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 private:
-	float Reach = 100.f;
+	float Reach = 100.f; //how far a player can reach, in cm
+
+	UPhysicsHandleComponent* PhysicsHandle = nullptr;
+	UInputComponent* InputComponent = nullptr;
+
 	
+	void Grab(); ///ray-cast and grab whats in reach
+	void Release(); /// Called when grab is released
+	void FindPhysicsHandleComponent(); //find attached physics component
+	void SetupInputComponent(); ///Setup (assumed)  input component
+	const FHitResult GetFirstPhysicsBodyInReach(); //return hit for first physics body in reach	
 };
