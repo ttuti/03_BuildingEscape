@@ -8,6 +8,7 @@
 #include "OpenDoor.generated.h"
 
 
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
 {
@@ -40,6 +41,7 @@ private:
 
 	float LastDoorOpenTime;
 		
-	AActor* ActorThatOpens; //remember pawn inherits from actor
 	AActor* Owner; //owning door
+
+	float GetTotalMassOfActorsOnPlate(); //Returns mass in kgs
 };
