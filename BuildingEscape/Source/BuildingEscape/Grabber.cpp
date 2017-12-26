@@ -29,6 +29,7 @@ void UGrabber::Grab() {
 	auto HitResult = GetFirstPhysicsBodyInReach(); //LINE TRACE to see if in reach with physics body
 	auto ComponentToGrab = HitResult.GetComponent(); //Gets the mesh components
 	auto ActorHit = HitResult.GetActor();
+	if (!PhysicsHandle) { return; }
 	if (ActorHit) {
 		PhysicsHandle->GrabComponent(
 			ComponentToGrab,
@@ -49,7 +50,7 @@ void UGrabber::SetupInputComponent() {
 		InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
 		InputComponent->BindAction("Grab", IE_Released, this, &UGrabber::Release);
 	} else {
-		UE_LOG(LogTemp, Error, TEXT("% missing input handle componenet"), *GetOwner()->GetName());
+		UE_LOG(LogTemp, Error, TEXT("% missing input handle component"), *GetOwner()->GetName());
 	}
 }
 
@@ -65,7 +66,7 @@ void UGrabber::FindPhysicsHandleComponent() {
 void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	
+	if (!PhysicsHandle) { return; }
 	if (PhysicsHandle->GrabbedComponent) {
 		PhysicsHandle->SetTargetLocation(GetReachLineEnd());
 	}
